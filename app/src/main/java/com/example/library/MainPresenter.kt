@@ -2,9 +2,9 @@ package com.example.library
 
 import moxy.MvpPresenter
 
-class MainPresenter : MvpPresenter<MainView>() {
-
-    private val model = CountersModel()
+class MainPresenter(
+    private val model: CountersModel
+) : MvpPresenter<MainView>() {
 
     fun counterClickFirst() {
         val nextValue = model.increment1()

@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.widget.Button
 import com.example.library.databinding.ActivityMainBinding
 import moxy.MvpAppCompatActivity
-import moxy.presenter.InjectPresenter
+import moxy.ktx.moxyPresenter
 
 class MainActivity : MvpAppCompatActivity(), MainView {
 
@@ -12,8 +12,7 @@ class MainActivity : MvpAppCompatActivity(), MainView {
     private val binding
         get() = _binding!!
 
-    @InjectPresenter
-    lateinit var presenter: MainPresenter
+    private val presenter by moxyPresenter { MainPresenter(CountersModel()) }
 
     private val btnCounter1: Button by lazy { binding.btnCounter1 }
     private val btnCounter2: Button by lazy { binding.btnCounter2 }
