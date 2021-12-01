@@ -2,16 +2,18 @@ package com.example.library
 
 import android.os.Bundle
 import android.widget.Button
-import androidx.appcompat.app.AppCompatActivity
 import com.example.library.databinding.ActivityMainBinding
+import moxy.MvpAppCompatActivity
+import moxy.presenter.InjectPresenter
 
-class MainActivity : AppCompatActivity(), MainView {
+class MainActivity : MvpAppCompatActivity(), MainView {
 
     private var _binding: ActivityMainBinding? = null
     private val binding
         get() = _binding!!
 
-    private val presenter = MainPresenter(this)
+    @InjectPresenter
+    lateinit var presenter: MainPresenter
 
     private val btnCounter1: Button by lazy { binding.btnCounter1 }
     private val btnCounter2: Button by lazy { binding.btnCounter2 }
