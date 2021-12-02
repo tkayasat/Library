@@ -1,9 +1,10 @@
-package com.example.library
+package com.example.library.moxy
 
+import com.github.terrakok.cicerone.Router
 import moxy.MvpPresenter
 
 class MainPresenter(
-    private val model: CountersModel
+    private val model: Router
 ) : MvpPresenter<MainView>() {
 
     fun counterClickFirst() {
@@ -19,5 +20,9 @@ class MainPresenter(
     fun counterClickThird() {
         val nextValue = model.increment1()
         viewState.setThirdCounter(nextValue.toString())
+    }
+
+    fun backPressed() {
+        TODO("Not yet implemented")
     }
 }

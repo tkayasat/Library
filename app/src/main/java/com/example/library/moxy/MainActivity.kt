@@ -1,4 +1,4 @@
-package com.example.library
+package com.example.library.moxy
 
 import android.os.Bundle
 import android.widget.Button
