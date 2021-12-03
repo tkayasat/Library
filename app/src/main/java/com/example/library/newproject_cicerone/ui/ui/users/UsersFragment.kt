@@ -12,9 +12,14 @@ import com.example.library.newproject_cicerone.ui.ui.base.BackButtonListener
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
 
-class  UsersFragment : MvpAppCompatFragment(), UsersView.UsersView, BackButtonListener {
+class UsersFragment : MvpAppCompatFragment(), UsersView.UsersView, BackButtonListener {
 
-    private val presenter by moxyPresenter { UsersPresenter(App.instance.router, GithubUsersRepository()) }
+    private val presenter by moxyPresenter {
+        UsersPresenter(
+            App.instance.router,
+            GithubUsersRepository()
+        )
+    }
 
     private var _binding: FragmentUsersBinding? = null
     private val binding
@@ -24,7 +29,11 @@ class  UsersFragment : MvpAppCompatFragment(), UsersView.UsersView, BackButtonLi
         UsersAdapter(presenter.usersListPresenter)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         _binding = FragmentUsersBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -32,8 +41,6 @@ class  UsersFragment : MvpAppCompatFragment(), UsersView.UsersView, BackButtonLi
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.usersRecycler.layoutManager = LinearLayoutManager(requireContext())
-        binding.usersRecycler.adapter = adapter
     }
 
     override fun updateList() {

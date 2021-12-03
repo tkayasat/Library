@@ -1,10 +1,9 @@
 package com.example.library.moxy
 
-import com.github.terrakok.cicerone.Router
 import moxy.MvpPresenter
 
 class MainPresenter(
-    private val model: Router
+    private val model: CountersModel
 ) : MvpPresenter<MainView>() {
 
     fun counterClickFirst() {

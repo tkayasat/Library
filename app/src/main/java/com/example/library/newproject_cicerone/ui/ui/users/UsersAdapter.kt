@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.library.databinding.ItemUserBinding
+import com.example.library.databinding.ItemUserBinding.*
 
 class UsersAdapter(
     private val presenter: UsersPresenter.UsersListPresenter
@@ -13,7 +14,7 @@ class UsersAdapter(
         return UserViewHolder(
             ItemUserBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         ).apply {
-            itemView.setOnClickListener { presenter.itemClickListener() }
+            itemView.setOnClickListener { presenter.itemClickListener()}
         }
     }
 
@@ -25,7 +26,7 @@ class UsersAdapter(
         return presenter.getCount()
     }
 
-    inner class UserViewHolder(private val vb: ItemUserBinding) : RecyclerView.ViewHolder(vb.root),
+    abstract inner class UserViewHolder(private val vb: ItemUserBinding) : RecyclerView.ViewHolder(vb.root),
         UsersItemView {
 
         override var pos: Int = -1

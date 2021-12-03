@@ -15,6 +15,7 @@ abstract class MainActivity : MvpAppCompatActivity(R.layout.main_activity_cicero
 
     private val presenter by moxyPresenter { MainPresenter(App.instance.router) }
 
+
     override fun onResumeFragments() {
         super.onResumeFragments()
         App.instance.navigationHolder.setNavigator(navigator)
@@ -34,4 +35,4 @@ abstract class MainActivity : MvpAppCompatActivity(R.layout.main_activity_cicero
         }
         presenter.backPressed()
     }
-}
+    }
