@@ -1,10 +1,9 @@
 package com.example.library.newproject_cicerone.main
 
 import com.example.library.R
-import com.example.library.moxy.MainPresenter
-import com.example.library.moxy.MainView
 import com.example.library.newproject_cicerone.ui.ui.App
 import com.example.library.newproject_cicerone.ui.ui.base.BackButtonListener
+import com.github.terrakok.cicerone.Router
 import com.github.terrakok.cicerone.androidx.AppNavigator
 import moxy.MvpAppCompatActivity
 import moxy.ktx.moxyPresenter
@@ -14,6 +13,8 @@ abstract class MainActivity : MvpAppCompatActivity(R.layout.main_activity_cicero
     private val navigator = AppNavigator(this, R.id.container)
 
     private val presenter by moxyPresenter { MainPresenter(App.instance.router) }
+
+    abstract fun MainPresenter(router: Router): MainPresenter
 
 
     override fun onResumeFragments() {
@@ -35,4 +36,4 @@ abstract class MainActivity : MvpAppCompatActivity(R.layout.main_activity_cicero
         }
         presenter.backPressed()
     }
-    }
+}

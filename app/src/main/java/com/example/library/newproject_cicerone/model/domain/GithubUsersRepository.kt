@@ -1,6 +1,7 @@
 package com.example.library.newproject_cicerone.model.domain
 
 import com.example.library.newproject_cicerone.model.GithubUserModel
+import io.reactivex.rxjava3.core.Single
 
 class GithubUsersRepository {
     private val users = listOf(
@@ -11,7 +12,7 @@ class GithubUsersRepository {
         GithubUserModel("Login 5"),
     )
 
-    fun getUsers(): List<GithubUserModel> {
-        return users
+    fun getUsers(): Single<List<GithubUserModel>> {
+        return Single.just(users)
     }
 }

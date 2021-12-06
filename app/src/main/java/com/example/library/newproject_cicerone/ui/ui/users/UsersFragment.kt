@@ -4,8 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.LinearLayoutManager
+import android.widget.Toast
 import com.example.library.databinding.FragmentUsersBinding
+import com.example.library.newproject_cicerone.model.GithubUserModel
 import com.example.library.newproject_cicerone.model.domain.GithubUsersRepository
 import com.example.library.newproject_cicerone.ui.ui.App
 import com.example.library.newproject_cicerone.ui.ui.base.BackButtonListener
@@ -26,8 +27,9 @@ class UsersFragment : MvpAppCompatFragment(), UsersView.UsersView, BackButtonLis
         get() = _binding!!
 
     private val adapter by lazy {
-        UsersAdapter(presenter.usersListPresenter)
+        UsersAdapter(presenter::onUserClicked)
     }
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,17 +40,28 @@ class UsersFragment : MvpAppCompatFragment(), UsersView.UsersView, BackButtonLis
         return binding.root
     }
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
     }
 
-    override fun updateList() {
-        adapter.notifyDataSetChanged()
+    override fun showError(err: Throwable) {
+        Toast.makeText(requireContext(), err.localizedMessage, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun init() {
+    }
+
+    fun updateList(users: GithubUserModel) {
+        adapter.submitList(adapter.currentList + users)
     }
 
     override fun backPressed(): Boolean {
         presenter.backPressed()
         return true
+    }
+
+    override fun updateList() {
     }
 }
