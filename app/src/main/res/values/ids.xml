@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="btn_image_selection" type="id">choose image</item>
+    <item name="btn_start_converting" type="id">convert to  PNG</item>
+    <item name="progressBar2" type="id">loading</item>
+    <item name="imgView_converted_img" type="id">converted image</item>
+</resources>

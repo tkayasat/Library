@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.example.library.databinding.FragmentUsersBinding
+import com.example.library.newproject_cicerone.connectivity.NetworkStatus
 import com.example.library.newproject_cicerone.model.GithubUserModel
 import com.example.library.newproject_cicerone.model.domain.GithubUsersRepository
 import com.example.library.newproject_cicerone.ui.ui.App
@@ -30,6 +31,7 @@ class UsersFragment : MvpAppCompatFragment(), UsersView.UsersView, BackButtonLis
         UsersAdapter(presenter::onUserClicked)
     }
 
+    private val status by lazy { NetworkStatus(requireContext().applicationContext) }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,7 +45,6 @@ class UsersFragment : MvpAppCompatFragment(), UsersView.UsersView, BackButtonLis
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
     }
 
     override fun showError(err: Throwable) {

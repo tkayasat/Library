@@ -38,7 +38,7 @@ class UsersPresenter(
         viewState.updateList()
     }
 
-    fun destroyView(view: UsersView?) {
+    fun onDestroy(view: UsersView?) {
         disposables.dispose()
     }
 
