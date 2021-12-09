@@ -32,11 +32,13 @@ class UsersPresenter(
 
     fun onUserClicked(userModel: GithubUserModel) {
         router.navigateTo(AppScreens.userDetailScreen(userModel.login))
+        router.navigateTo(AppScreens.imageConverter())
     }
 
     private fun handleUsers(users: List<GithubUserModel>) {
         viewState.updateList()
     }
+
 
     fun onDestroy(view: UsersView?) {
         disposables.dispose()
