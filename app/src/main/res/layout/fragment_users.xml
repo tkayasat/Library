@@ -17,8 +17,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="41dp" />
+        tools:layout_editor_absoluteY="41dp"
+        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/btn_go_to_img_converter"
@@ -28,5 +28,21 @@
         tools:layout_editor_absoluteX="6dp"
         tools:layout_editor_absoluteY="178dp"
         tools:ignore="MissingConstraints" />
+
+    <FrameLayout
+        android:layout_width="353dp"
+        android:layout_height="383dp"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="248dp"
+        tools:ignore="MissingConstraints">
+
+    <ProgressBar
+        android:id="@+id/loadingView"
+        android:visibility="gone"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center" />
+
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

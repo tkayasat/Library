@@ -13,7 +13,7 @@ class UsersPresenter(
 
     private val router: Router,
     private val usersRepository: GithubUsersRepository,
-) : MvpPresenter<UsersView.UsersView>() {
+) : MvpPresenter<UsersView>() {
 
     val disposables = CompositeDisposable()
 
@@ -28,23 +28,29 @@ class UsersPresenter(
         usersRepository.getUsers()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe { users ->
-                viewState.updateList(users)
+            .doOnSubscribe { viewState.showLoading() }
+            .subscribe(
+                { users ->
+                    viewState.updateList(users)
+                    viewState.hideLoading()
+                }, {
+                    viewState.hideLoading()
 
-                //#region  okHttpClient - разобрано
-                /*val okHttpClient= OkHttpClient.Builder().build()
-        val request = Request.Builder()
-            .url ("http://api.github.com/users")
-            .build()
-        okHttpClient.newCall(request).enqueue(object: Callback{
-            override fun onResponse(call: Call, response: Response) {
-                Log.d ("OkHTTP", "Ответ: ${response.body?.string()}")
-            }
-            override fun onFailure(call: Call, e: IOException) {
-            }
-        })*/
-                //#endregion
-            }
+                    //#region  okHttpClient - разобрано
+                    /*val okHttpClient= OkHttpClient.Builder().build()
+            val request = Request.Builder()
+                .url ("http://api.github.com/users")
+                .build()
+            okHttpClient.newCall(request).enqueue(object: Callback{
+                override fun onResponse(call: Call, response: Response) {
+                    Log.d ("OkHTTP", "Ответ: ${response.body?.string()}")
+                }
+                override fun onFailure(call: Call, e: IOException) {
+                }
+            })*/
+                    //#endregion
+                }
+            )
     }
 
     fun onUserClicked(userModel: GithubUserModel) {
