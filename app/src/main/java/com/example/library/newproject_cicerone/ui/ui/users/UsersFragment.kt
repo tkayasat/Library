@@ -8,7 +8,8 @@ import android.widget.Toast
 import com.example.library.databinding.FragmentUsersBinding
 import com.example.library.newproject_cicerone.connectivity.NetworkStatus
 import com.example.library.newproject_cicerone.model.GithubUserModel
-import com.example.library.newproject_cicerone.model.domain.GithubUsersRepository
+import com.example.library.newproject_cicerone.model.domain.GithubUsersRepositoryImpl
+import com.example.library.newproject_cicerone.remote.ApiHolder
 import com.example.library.newproject_cicerone.ui.ui.App
 import com.example.library.newproject_cicerone.ui.ui.base.BackButtonListener
 import moxy.MvpAppCompatFragment
@@ -19,7 +20,7 @@ class UsersFragment : MvpAppCompatFragment(), UsersView.UsersView, BackButtonLis
     private val presenter by moxyPresenter {
         UsersPresenter(
             App.instance.router,
-            GithubUsersRepository()
+            GithubUsersRepositoryImpl(ApiHolder.retrofitService)
         )
     }
 
@@ -63,6 +64,6 @@ class UsersFragment : MvpAppCompatFragment(), UsersView.UsersView, BackButtonLis
         return true
     }
 
-    override fun updateList() {
+    override fun updateList(users: List<GithubUserModel>) {
     }
 }
