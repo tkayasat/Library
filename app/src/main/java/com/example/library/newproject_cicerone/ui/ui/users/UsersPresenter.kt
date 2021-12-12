@@ -1,11 +1,14 @@
 package com.example.library.newproject_cicerone.ui.ui.users
 
+import android.util.Log
 import com.example.library.newproject_cicerone.model.GithubUserModel
 import com.example.library.newproject_cicerone.model.domain.GithubUsersRepository
 import com.example.library.newproject_cicerone.screens.AppScreens
 import com.github.terrakok.cicerone.Router
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import moxy.MvpPresenter
+import okhttp3.*
+import java.io.IOException
 
 class UsersPresenter(
 
@@ -23,11 +26,18 @@ class UsersPresenter(
     }
 
     private fun loadData() {
-        disposables.add(
-            usersRepository
-                .getUsers()
-                .subscribe(::handleUsers, viewState::showError)
-        )
+        val okHttpClient= OkHttpClient.Builder().build()
+        val request = Request.Builder()
+            .url ("http://api.github.com/users")
+            .build()
+        okHttpClient.newCall(request).enqueue(object: Callback{
+            override fun onResponse(call: Call, response: Response) {
+                Log.d ("OkHTTP", "Ответ: ${response.body?.string()}")
+            }
+            override fun onFailure(call: Call, e: IOException) {
+            }
+        })
+
     }
 
     fun onUserClicked(userModel: GithubUserModel) {
