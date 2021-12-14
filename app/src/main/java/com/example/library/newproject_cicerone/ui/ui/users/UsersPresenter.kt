@@ -53,9 +53,12 @@ class UsersPresenter(
             )
     }
 
+
+
     fun onUserClicked(userModel: GithubUserModel) {
         router.navigateTo(AppScreens.userDetailScreen(userModel.login))
         router.navigateTo(AppScreens.imageConverter())
+
     }
 
     fun handleUsers(users: List<GithubUserModel>) {

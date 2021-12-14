@@ -10,7 +10,7 @@ class InfoUsersPresenter(
     val userId: Int? = null,
     private val githubUsersRepo: GithubUsersRepository,
     val router: Router
-) : MvpPresenter<UsersView.UsersView>() {
+) : MvpPresenter<UsersView>() {
 
     fun backPressed(): Boolean {
         router.exit()

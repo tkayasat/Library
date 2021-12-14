@@ -28,4 +28,11 @@ object ApiHolder {
             .addConverterFactory(GsonConverterFactory.create(getGson()))
             .build()
     }
+
+    fun create() {
+    }
+
+    fun getRepo(url: String) {
+
+    }
 }

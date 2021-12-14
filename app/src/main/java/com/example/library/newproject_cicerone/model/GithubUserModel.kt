@@ -9,4 +9,7 @@ data class GithubUserModel(
 
     @Expose
     val avatarUrl: String,
+
+    @Expose
+    val reposUrl: String,
 )

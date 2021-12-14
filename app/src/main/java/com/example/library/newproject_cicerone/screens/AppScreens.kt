@@ -17,4 +17,5 @@ object AppScreens {
 
     fun imageConverter(): Screen =
         FragmentScreen { ImageConverterFragment() }
+
 }
