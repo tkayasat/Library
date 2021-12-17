@@ -7,11 +7,12 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
 import com.example.library.databinding.FragmentUsersBinding
-import com.example.library.newproject_cicerone.remote.connectivity.NetworkStatus
+import com.example.library.newproject_cicerone.db.db.AppDatabase
 import com.example.library.newproject_cicerone.imageloading.GlideImageLoader
 import com.example.library.newproject_cicerone.model.GithubUserModel
 import com.example.library.newproject_cicerone.model.domain.GithubUsersRepositoryImpl
 import com.example.library.newproject_cicerone.remote.ApiHolder
+import com.example.library.newproject_cicerone.remote.connectivity.NetworkStatus
 import com.example.library.newproject_cicerone.ui.ui.App
 import com.example.library.newproject_cicerone.ui.ui.base.BackButtonListener
 import moxy.MvpAppCompatFragment
@@ -19,13 +20,18 @@ import moxy.ktx.moxyPresenter
 
 class UsersFragment : MvpAppCompatFragment(), UsersView, BackButtonListener {
 
-        private val status by lazy { NetworkStatus(requireContext().applicationContext) }
+    private val status by lazy { NetworkStatus(requireContext().applicationContext) }
 
     private val presenter by moxyPresenter {
         UsersPresenter(
             App.instance.router,
-            GithubUsersRepositoryImpl(ApiHolder.retrofitService)
+            GithubUsersRepositoryImpl(
+                networkStatus = status,
+                retrofitService = ApiHolder.retrofitService,
+                db = AppDatabase.instance
+            ),
         )
+
     }
 
     private var _binding: FragmentUsersBinding? = null
@@ -33,8 +39,10 @@ class UsersFragment : MvpAppCompatFragment(), UsersView, BackButtonListener {
         get() = _binding!!
 
     private val adapter by lazy {
-        UsersAdapter(presenter::onUserClicked,
-        GlideImageLoader())
+        UsersAdapter(
+            presenter::onUserClicked,
+            GlideImageLoader()
+        )
     }
 
     override fun onCreateView(
@@ -56,7 +64,7 @@ class UsersFragment : MvpAppCompatFragment(), UsersView, BackButtonListener {
         Toast.makeText(requireContext(), err.localizedMessage, Toast.LENGTH_SHORT).show()
     }
 
-     override fun init() {
+    override fun init() {
     }
 
     override fun showLoading() {
