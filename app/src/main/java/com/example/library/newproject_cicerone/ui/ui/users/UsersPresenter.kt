@@ -2,7 +2,7 @@ package com.example.library.newproject_cicerone.ui.ui.users
 
 import com.example.library.newproject_cicerone.model.GithubUserModel
 import com.example.library.newproject_cicerone.model.domain.GithubUsersRepository
-import com.example.library.newproject_cicerone.screens.AppScreens
+import com.example.library.newproject_cicerone.navigation.AppScreens
 import com.github.terrakok.cicerone.Router
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable

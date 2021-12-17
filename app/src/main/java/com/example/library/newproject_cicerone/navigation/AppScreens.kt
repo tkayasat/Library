@@ -1,4 +1,4 @@
-package com.example.library.newproject_cicerone.screens
+package com.example.library.newproject_cicerone.navigation
 
 import ImageConverter.main.ImageConverterFragment
 import com.example.library.newproject_cicerone.ui.ui.users.UsersFragment

@@ -1,4 +1,4 @@
-package com.example.library.newproject_cicerone.connectivity
+package com.example.library.newproject_cicerone.remote.connectivity
 
 import android.content.Context
 import android.net.ConnectivityManager
