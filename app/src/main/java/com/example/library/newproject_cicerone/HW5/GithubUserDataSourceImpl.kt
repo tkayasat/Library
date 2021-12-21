@@ -3,8 +3,10 @@ package com.example.library.newproject_cicerone.HW5
 import com.example.library.newproject_cicerone.model.GithubUserModel
 import com.example.library.newproject_cicerone.remote.RetrofitService
 import io.reactivex.rxjava3.core.Single
+import javax.inject.Inject
 
-class GithubUserDataSourceImpl (
+class GithubUserDataSourceImpl
+    @Inject constructor(
     private val retrofitService: RetrofitService
 ): GithubUserDataSource {
 

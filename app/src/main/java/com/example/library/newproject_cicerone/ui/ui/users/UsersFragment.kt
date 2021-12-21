@@ -18,19 +18,14 @@ import com.example.library.newproject_cicerone.ui.ui.base.BackButtonListener
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
 
-class UsersFragment : MvpAppCompatFragment(), UsersView, BackButtonListener {
+abstract class UsersFragment : MvpAppCompatFragment(), UsersView, BackButtonListener {
 
     private val status by lazy { NetworkStatus(requireContext().applicationContext) }
 
     private val presenter by moxyPresenter {
-        UsersPresenter(
-            App.instance.router,
-            GithubUsersRepositoryImpl(
-                networkStatus = status,
-                retrofitService = ApiHolder.retrofitService,
-                db = AppDatabase.instance
-            ),
-        )
+        UsersPresenter().apply {
+            App.instance.appComponent.inject(this)
+        }
 
     }
 
@@ -85,5 +80,4 @@ class UsersFragment : MvpAppCompatFragment(), UsersView, BackButtonListener {
         presenter.backPressed()
         return true
     }
-
 }

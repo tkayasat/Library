@@ -17,4 +17,6 @@ interface UsersView : MvpView {
 
     @AddToEndSingle
     fun hideLoading()
+    abstract fun UsersPresenter(): UsersPresenter
+
 }

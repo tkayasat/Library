@@ -6,8 +6,10 @@ import com.example.library.newproject_cicerone.model.GithubUserModel
 import com.example.library.newproject_cicerone.remote.RetrofitService
 import com.example.library.newproject_cicerone.remote.connectivity.NetworkStatus
 import io.reactivex.rxjava3.core.Single
+import javax.inject.Inject
 
-class GithubUsersRepositoryImpl(
+class GithubUsersRepositoryImpl
+    @Inject constructor(
     private val networkStatus: NetworkStatus,
     private val retrofitService: RetrofitService,
     private val db: AppDatabase,

@@ -5,7 +5,10 @@ import android.net.ConnectivityManager
 import android.net.Network
 import android.net.NetworkRequest
 import androidx.core.content.getSystemService
+import com.example.library.newproject_cicerone.HW5.GithubRepo
+import com.example.library.newproject_cicerone.model.GithubRepoModel
 import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.subjects.BehaviorSubject
 
 
@@ -20,6 +23,8 @@ class NetworkStatus(context: Context) {
     }
 
     fun isOnline() = networkSubject.value ?: false
+
+    fun getRepo(url: String) {}
 
     init {
         val request = NetworkRequest.Builder().build()

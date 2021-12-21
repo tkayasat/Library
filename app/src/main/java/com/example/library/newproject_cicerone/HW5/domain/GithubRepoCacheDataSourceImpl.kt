@@ -3,8 +3,12 @@ package com.example.library.newproject_cicerone.HW5.domain
 import com.example.library.newproject_cicerone.HW5.GithubRepo
 import com.example.library.newproject_cicerone.HW5.data.GithubRepoCacheDataSource
 import io.reactivex.rxjava3.core.Single
+import javax.inject.Inject
 
-class GithubRepoCacheDataSourceImpl : GithubRepoCacheDataSource {
+class GithubRepoCacheDataSourceImpl
+    @Inject constructor(
+      private val githubRepo: GithubRepo
+    ) : GithubRepoCacheDataSource {
 
     private val cache: MutableList<GithubRepo> = mutableListOf()
 

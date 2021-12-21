@@ -8,11 +8,12 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import moxy.MvpPresenter
+import javax.inject.Inject
 
-class UsersPresenter(
-
+class UsersPresenter @Inject constructor(
     private val router: Router,
     private val usersRepository: GithubUsersRepository,
+    private val appScreens: AppScreens,
 ) : MvpPresenter<UsersView>() {
 
     val disposables = CompositeDisposable()
@@ -53,18 +54,13 @@ class UsersPresenter(
             )
     }
 
-
-
-    fun onUserClicked(userModel: GithubUserModel) {
-        router.navigateTo(AppScreens.userDetailScreen(userModel.login))
-        router.navigateTo(AppScreens.imageConverter())
-
-    }
-
     fun handleUsers(users: List<GithubUserModel>) {
         viewState.updateList(users)
     }
 
+    fun onUserClicked(userModel: GithubUserModel) {
+        router.navigateTo(appScreens.reposScreen(userModel))
+    }
 
     fun onDestroy(view: UsersView?) {
         disposables.dispose()

@@ -1,18 +1,18 @@
 package com.example.library.newproject_cicerone.ui.ui
 
 import android.app.Application
-import com.github.terrakok.cicerone.Cicerone
-import com.github.terrakok.cicerone.Router
+import com.example.library.newproject_cicerone.di.di.components.AppComponent
+import com.example.library.newproject_cicerone.di.di.modules.ContextModule
 
-class App: Application() {
 
-    private val cicerone: Cicerone<Router> by lazy { Cicerone.create() }
+class App : Application() {
 
-    val navigationHolder
-        get() = cicerone.getNavigatorHolder()
+    val appComponent: AppComponent by lazy {
+        DaggerAppComponent.builder()
+            .contextModule(ContextModule(this))
+            .build()
+    }
 
-    val router
-        get() = cicerone.router
 
     override fun onCreate() {
         super.onCreate()
