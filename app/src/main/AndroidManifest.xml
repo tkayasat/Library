@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Library">
         <activity
-            android:name="com.example.library.library.ui.ui.main.MainActivity"
+            android:name="com.example.library.libone.ui.ui.main.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
