@@ -1,19 +1,17 @@
-package com.example.library.newproject_cicerone.HW5.info
+package com.example.library.library.ui.ui.repos
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.core.content.ContentProviderCompat
-import androidx.fragment.app.Fragment
 import com.example.library.R
 import com.example.library.databinding.FragmentRepositoryInfoBinding
 import com.example.library.databinding.FragmentUsersBinding
-import com.example.library.newproject_cicerone.HW5.GithubRepo
-import com.example.library.newproject_cicerone.model.GithubUserModel
+import com.example.library.library.cache.GithubRepo
+import com.example.library.library.info.ReposView
+import com.example.library.library.model.GithubUserModel
 import moxy.MvpAppCompatFragment
 
-abstract class RepoFragment : MvpAppCompatFragment(R.layout.fragment_repository_info), ReposView {
+abstract class ReposFragment : MvpAppCompatFragment(R.layout.fragment_repository_info), ReposView {
 
     companion object {
         fun newInstance(userModel: GithubUserModel) {

@@ -10,8 +10,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.library.databinding.FragmentUsersBinding
-import com.example.library.newproject_cicerone.ui.ui.App
-import com.example.library.newproject_cicerone.ui.ui.base.BackButtonListener
+import com.example.library.library.ui.ui.App
+import com.example.library.library.ui.ui.base.BackButtonListener
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
 
